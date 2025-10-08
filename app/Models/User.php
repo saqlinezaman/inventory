@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Customer;
+use App\Models\Invoice;
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,5 +50,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    protected function categories(){
+        return $this->hasMany(Category::class);
+    }
+    protected function products(){
+        return $this->hasMany(Product::class);
+    }
+    protected function customers(){
+        return $this->hasMany(Customer::class);
+    }
+    protected function invoices(){
+        return $this->hasMany(Invoice::class);
     }
 }

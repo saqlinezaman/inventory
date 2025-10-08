@@ -20,7 +20,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->restrictOnDelete();
 
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+
         });
     }
 

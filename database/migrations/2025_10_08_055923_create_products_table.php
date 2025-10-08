@@ -13,7 +13,19 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
+            $table->string('name',100);
+            $table->float('price',50);
+            $table->string('unit',50);
+            $table->string('image')->nullable();
+
+           // foreign key
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->restrictOnDelete();
+
+            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnUpdate()->restrictOnDelete();
             $table->timestamps();
+
         });
     }
 
