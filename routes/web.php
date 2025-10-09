@@ -10,3 +10,4 @@ Route::get('/about', [HomeController::class, 'about'])->name('About');
 
 // Auth
 Route::post('/user-registration',[UserController::class, 'userRegistration'])->name('user.registration');
+Route::post('/user-login',[UserController::class, 'userLogin'])->name('user.login');
