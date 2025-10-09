@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Helper;
+
+use Exception;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class JWTToken
 {
@@ -16,5 +19,22 @@ class JWTToken
             'userId' => $userId,
         ];
         return JWT::encode($payload,$key,'HS256');
+    }//end method
+
+    public static function VerifyToken($token): string|object
+{
+    try {
+        if ($token == null) {
+            return 'Unauthorized';
+        } else {
+            $key = env('JWT_KEY');
+            $decoded = JWT::decode($token, new Key($key, 'HS256'));
+            return $decoded; 
+        }
+    } catch (Exception $e) {
+        return 'Invalid token';
     }
+}
+
+    
 }

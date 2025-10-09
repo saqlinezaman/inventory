@@ -63,4 +63,14 @@ class UserController extends Controller
             ],200);
         }
     } // end method
+
+    public function dashboard(Request $request)
+    {
+       $user = $request->header('email');
+       return response()->json([
+        'status' => 'success',
+        'message' => 'User login successfully',
+        'user' => $user
+       ],200);
+    }
 }
