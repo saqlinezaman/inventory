@@ -16,6 +16,8 @@ Route::post('/user-registration',[UserController::class, 'userRegistration'])->n
 Route::post('/user-login',[UserController::class, 'userLogin'])->name('user.login');
 // send otp
 Route::post('/send-otp',[UserController::class, 'sendOtp'])->name('send.otp');
+// verify otp 
+Route::post('/verify-otp',[UserController::class, 'verifyOtp'])->name('verify.otp');
 
 // Dashboard route with middleware
 Route::middleware(TokenVerificationMiddleware::class)->group(function () {
