@@ -18,7 +18,8 @@ export default function About() {
       };
     return (
         <div className="">
-            <h2>About</h2>
+            <h2 className="" >About</h2>
+            <button className="...">submit</button>
             <Link onClick={showToast} href="/">Go to Home Page</Link>
         </div>
     );
