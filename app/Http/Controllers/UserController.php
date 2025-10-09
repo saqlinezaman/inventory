@@ -6,7 +6,8 @@ use App\Helper\JWTToken;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\otpMail;
 class UserController extends Controller
 {
     // User Registration
@@ -81,5 +82,28 @@ class UserController extends Controller
             'message' => 'User logout successfully',
         ],200)->cookie('token', '', -1);
     }// end method
+
+    public function sendOtp(Request $request){
+        $email = $request->input('email');
+        $otp = rand(1000,9999);
+
+        $count = User::where('email',$email)->count();
+
+        if($count == 1){
+            Mail::to($email)->send(new otpMail($otp));
+            User::where('email',$email)->update([
+                'otp' => $otp ]);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => "4 digit {$otp} OTP sent to your email",
+            ],200);
+        }else{
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Unauthorized email',
+            ],404);
+        }
+    }
 
 }

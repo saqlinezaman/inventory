@@ -20,17 +20,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-4">
-      <h1 className="text-3xl font-bold text-blue-600">hello world</h1>
-
-     
-
-      <Link onClick={showToast}
-        href="/about"
-        className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition"
-      >
-        Go to About Page
-      </Link>
+    <div className="container mt-5" onClick={showToast}>
+      <h1 className="text-primary">Hello Bootstrap + React + Tailwind</h1>
+      <button className="btn btn-success mt-3">Click Me</button>
     </div>
   );
 }

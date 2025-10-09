@@ -9,9 +9,13 @@ Route::get('/', [HomeController::class, 'index'])->name('Home');
 // About route
 Route::get('/about', [HomeController::class, 'about'])->name('About');
 
-// Auth
+// Auth 
+// register
 Route::post('/user-registration',[UserController::class, 'userRegistration'])->name('user.registration');
+// login
 Route::post('/user-login',[UserController::class, 'userLogin'])->name('user.login');
+// send otp
+Route::post('/send-otp',[UserController::class, 'sendOtp'])->name('send.otp');
 
 // Dashboard route with middleware
 Route::middleware(TokenVerificationMiddleware::class)->group(function () {
