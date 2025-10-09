@@ -16,4 +16,6 @@ Route::post('/user-login',[UserController::class, 'userLogin'])->name('user.logi
 // Dashboard route with middleware
 Route::middleware(TokenVerificationMiddleware::class)->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('Dashboard');
+
+    Route::get('/logout', [UserController::class, 'logout'])->name('Logout');
 });

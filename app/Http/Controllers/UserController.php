@@ -72,5 +72,14 @@ class UserController extends Controller
         'message' => 'User login successfully',
         'user' => $user
        ],200);
-    }
+    }// end method
+
+    public function logout()
+    {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User logout successfully',
+        ],200)->cookie('token', '', -1);
+    }// end method
+
 }
