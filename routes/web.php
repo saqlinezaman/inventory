@@ -9,19 +9,24 @@ Route::get('/', [HomeController::class, 'index'])->name('Home');
 // About route
 Route::get('/about', [HomeController::class, 'about'])->name('About');
 
-// Auth 
-// register
-Route::post('/user-registration',[UserController::class, 'userRegistration'])->name('user.registration');
-// login
-Route::post('/user-login',[UserController::class, 'userLogin'])->name('user.login');
-// send otp
-Route::post('/send-otp',[UserController::class, 'sendOtp'])->name('send.otp');
-// verify otp 
-Route::post('/verify-otp',[UserController::class, 'verifyOtp'])->name('verify.otp');
+// Auth ---------------------------------------------------------------------------------
 
-// Dashboard route with middleware
+// register------------------------------------
+Route::post('/user-registration', [UserController::class, 'userRegistration'])->name('user.registration');
+// login---------------------------------------
+Route::post('/user-login', [UserController::class, 'userLogin'])->name('user.login');
+// send otp---------------------------------------
+Route::post('/send-otp', [UserController::class, 'sendOtp'])->name('send.otp');
+// verify otp ---------------------------------------
+Route::post('/verify-otp', [UserController::class, 'verifyOtp'])->name('verify.otp');
+
+// Dashboard route with middleware-------------------------------------------------------
 Route::middleware(TokenVerificationMiddleware::class)->group(function () {
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('Dashboard');
 
+    // reset password-------------------------------
+    Route::post('/reset-password', [UserController::class, 'resetPassword']);
+    // dashboard------------------------------------
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('Dashboard');
+    // logout---------------------------------------
     Route::get('/logout', [UserController::class, 'logout'])->name('Logout');
 });
