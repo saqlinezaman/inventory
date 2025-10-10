@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenVerificationMiddleware;
@@ -29,4 +30,7 @@ Route::middleware(TokenVerificationMiddleware::class)->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('Dashboard');
     // logout---------------------------------------
     Route::get('/logout', [UserController::class, 'logout'])->name('Logout');
+
+    // all Category routes
+    Route::post('/create-category', [CategoryController::class, 'createCategory'])->name('Category.create');
 });
