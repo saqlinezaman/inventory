@@ -32,5 +32,14 @@ Route::middleware(TokenVerificationMiddleware::class)->group(function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('Logout');
 
     // all Category routes
+    // create----------------------------------------
     Route::post('/create-category', [CategoryController::class, 'createCategory'])->name('Category.create');
+    // List------------------------------------------
+    Route::get('/list-category', [CategoryController::class, 'listCategory'])->name('Category.list');
+    // category by id----------------------------------
+    Route::post('/category-by-id', [CategoryController::class, 'categoryById']);
+    // update------------------------------------------
+    Route::post('/update-category', [CategoryController::class, 'categoryUpdate'])->name('Category.update');
+    // delete------------------------------------------
+    Route::get('/delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('Category.delete');
 });
