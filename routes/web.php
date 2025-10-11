@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -34,7 +35,7 @@ Route::middleware(TokenVerificationMiddleware::class)->group(function () {
 
     // all Category routes  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+
     // create----------------------------------------
     Route::post('/create-category', [CategoryController::class, 'createCategory'])->name('Category.create');
     // List------------------------------------------
@@ -47,6 +48,7 @@ Route::middleware(TokenVerificationMiddleware::class)->group(function () {
     Route::get('/delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('Category.delete');
 
     //all product routs ----------------------------------------------------------------- -------------------------------------------------------------------------------------
+    
     // create product ----------------------------------------
     Route::post('/create-product', [ProductController::class, 'createProduct'])->name('Product.create');
     // list product ------------------------------------------
@@ -57,4 +59,17 @@ Route::middleware(TokenVerificationMiddleware::class)->group(function () {
     Route::post('/update-product', [ProductController::class, 'productUpdate'])->name('Product.update');
     // delete------------------------------------------
     Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('Product.delete');
+
+    // all Customer routes  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // create----------------------------------------
+    Route::post('/create-customer', [CustomerController::class, 'createCustomer'])->name('Customer.create');
+    // List------------------------------------------
+    Route::get('/list-customer', [CustomerController::class, 'listCustomer'])->name('Customer.list');
+    // customer by id----------------------------------
+    Route::post('/customer-by-id', [CustomerController::class, 'customerById']);
+    // update------------------------------------------
+    Route::post('/update-customer', [CustomerController::class, 'customerUpdate'])->name('Customer.update');
+    // delete------------------------------------------
+    Route::get('/delete-customer/{id}', [CustomerController::class, 'deleteCustomer'])->name('Customer.delete');
 });
