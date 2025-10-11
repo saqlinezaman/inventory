@@ -51,8 +51,10 @@ Route::middleware(TokenVerificationMiddleware::class)->group(function () {
     Route::post('/create-product', [ProductController::class, 'createProduct'])->name('Product.create');
     // list product ------------------------------------------
     Route::get('/list-product', [ProductController::class, 'listProduct'])->name('Product.list');
-    
+    // product by id------------------------------------------
     Route::post('/product-by-id', [ProductController::class, 'productById']);
+    // update------------------------------------------
     Route::post('/update-product', [ProductController::class, 'productUpdate'])->name('Product.update');
+    // delete------------------------------------------
     Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('Product.delete');
 });
