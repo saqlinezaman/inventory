@@ -99,6 +99,26 @@ class InvoiceController extends Controller
         ];
     } //end method
 
-    
+    public function deleteInvoice(Request $request, $id){
+        DB::beginTransaction();
+        try {
+            $userId = $request->header('userId');
+            InvoiceProduct::where('invoice_id', $id)->where('user_id', $userId)->delete();
+
+            $invoice = Invoice::where('id', $id)->where('user_id', $userId)->delete();
+            DB::commit();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Invoice deleted successfully'
+            ]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Invoice deletion failed: ' . $e->getMessage()
+            ], 500);
+        }
+
+    }
 
 }
